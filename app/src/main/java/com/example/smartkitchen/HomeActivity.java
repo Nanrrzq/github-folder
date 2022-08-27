@@ -23,6 +23,7 @@ public class HomeActivity extends MainActivity {
         btnExit = findViewById(R.id.btnExit);
         btnSettings = findViewById(R.id.btnSettings);
         btnSmartKitchen = findViewById(R.id.btnKitchen);
+//        sdasdasdasd
 
 //        button exit
         btnExit.setOnClickListener(new View.OnClickListener() {
