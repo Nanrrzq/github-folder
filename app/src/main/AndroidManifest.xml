@@ -11,6 +11,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission-sdk-23 android:name="android.permission.BLUETOOTH" />
+    <uses-permission-sdk-23 android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission-sdk-23 android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION_LOCATION" />
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+    <uses-permission-sdk-23 android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission-sdk-23 android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
 
     <application
         android:allowBackup="true"
@@ -22,6 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartKitchen"
         tools:targetApi="31">
+        <activity android:name=".Controlling"
+            android:exported="false"/>
+
         <activity
             android:name=".SmartKitchen"
             android:exported="false" />

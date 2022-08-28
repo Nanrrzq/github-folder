@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -33,6 +34,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
     TextView clicked_device;
     Button connect;
     BluetoothDevice device_data;
+    String mac_id;
     private static final int BT_ENABLE_REQUEST = 10; // This is the code we use for BT Enable
     private static final int SETTINGS = 20;
     private UUID mDeviceUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -69,7 +71,8 @@ public class ScanningDevicesActivity extends AppCompatActivity {
             }
         });
 
-        if (!device_data.equals(null)){
+
+
             connect.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
@@ -77,11 +80,12 @@ public class ScanningDevicesActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), Controlling.class);
                     intent.putExtra(DEVICE_EXTRA, device);
                     intent.putExtra(DEVICE_UUID, mDeviceUUID.toString());
+                    intent.putExtra("mac_id",mac_id);
                     intent.putExtra(BUFFER_SIZE, mBufferSize);
                     startActivity(intent);
                 }
             });
-        }
+
 
 
         btnScanDevices.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +118,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String text = lstvw1.getItemAtPosition(i).toString();
                 clicked_device.setText(text);
-                device_data = (BluetoothDevice) lstvw1.getItemAtPosition(i);
+                device_data = (BluetoothDevice) lstvw1.getSelectedItem();
             }
         });
     }
@@ -137,11 +141,15 @@ public class ScanningDevicesActivity extends AppCompatActivity {
                     return;
                 }
                 stringArrayList.add(device.getName() + "  " + device.getAddress());
-
+                mac_id = device.getAddress();
                 arrayAdapter.notifyDataSetChanged();
 
             }
             Toast.makeText(getApplicationContext(), "Scanning Devices", Toast.LENGTH_SHORT).show();
         }
     };
+    public static boolean isEmpty(BluetoothDevice obj) {
+        return obj == null;
+    }
+
 }

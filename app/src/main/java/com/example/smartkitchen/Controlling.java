@@ -1,6 +1,7 @@
 package com.example.smartkitchen;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -27,6 +29,8 @@ public class Controlling extends Activity {
         private UUID mDeviceUUID;
         private BluetoothSocket mBTSocket;
         private ReadInput mReadThread = null;
+        String mac_id;
+    BluetoothAdapter btAdapter;
 
         private boolean mIsUserInitiatedDisconnect = false;
         private boolean mIsBluetoothConnected = false;
@@ -40,17 +44,24 @@ public class Controlling extends Activity {
 
 
         private ProgressDialog progressDialog;
-        Button btnOn, btnOff;
+        Button btnOn, btnOff, btnCm1, btnCm2, btnCm3;
+        TextView btnBack;
 
 
+        @SuppressLint("MissingPermission")
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_controlling);
+            setContentView(R.layout.activity_smart_kitchen);
 
             // mBtnDisconnect = (Button) findViewById(R.id.btnDisconnect);
-            btnOn = (Button) findViewById(R.id.btnOn1);
-            btnOff = (Button) findViewById(R.id.btnOff1);
+//            btnOn = (Button) findViewById(R.id.btnOn1);
+//            btnOff = (Button) findViewById(R.id.btnOff1);
+
+            btnCm1 = findViewById(R.id.cm1);
+            btnCm2 = findViewById(R.id.cm2);
+            btnCm3 = findViewById(R.id.cm3);
+            btnBack = findViewById(R.id.btnBack2);
 
 
             Intent intent = getIntent();
@@ -58,11 +69,21 @@ public class Controlling extends Activity {
             mDevice = b.getParcelable(ScanningDevicesActivity.DEVICE_EXTRA);
             mDeviceUUID = UUID.fromString(b.getString(ScanningDevicesActivity.DEVICE_UUID));
             mMaxChars = b.getInt(ScanningDevicesActivity.BUFFER_SIZE);
-
+            mac_id = intent.getStringExtra("mac_id");
+            btAdapter = BluetoothAdapter.getDefaultAdapter();
+            mDevice = btAdapter.getRemoteDevice(mac_id);
             Log.d(TAG, "Ready");
 
+            btnBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Controlling.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
 
-            btnOn.setOnClickListener(new View.OnClickListener() {
+            btnCm1.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -79,7 +100,7 @@ public class Controlling extends Activity {
                 }
             });
 
-            btnOff.setOnClickListener(new View.OnClickListener() {
+            btnCm2.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -101,6 +122,7 @@ public class Controlling extends Activity {
         private class ReadInput implements Runnable {
 
             private boolean bStop = false;
+
             private Thread t;
 
             public ReadInput() {
@@ -112,11 +134,13 @@ public class Controlling extends Activity {
                 return t.isAlive();
             }
 
+            @SuppressLint("MissingPermission")
             @Override
             public void run() {
                 InputStream inputStream;
-
                 try {
+                    mBTSocket = mDevice.createRfcommSocketToServiceRecord(mDeviceUUID);
+                    mBTSocket.connect();
                     inputStream = mBTSocket.getInputStream();
                     while (!bStop) {
                         byte[] buffer = new byte[256];
