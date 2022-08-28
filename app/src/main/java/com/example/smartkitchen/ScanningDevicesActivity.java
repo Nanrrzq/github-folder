@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ScanningDevicesActivity extends AppCompatActivity {
 
@@ -28,6 +30,19 @@ public class ScanningDevicesActivity extends AppCompatActivity {
     TextView btnBack1;
     BluetoothAdapter BA;
     ListView lstvw1;
+    TextView clicked_device;
+    Button connect;
+    BluetoothDevice device_data;
+    private static final int BT_ENABLE_REQUEST = 10; // This is the code we use for BT Enable
+    private static final int SETTINGS = 20;
+    private UUID mDeviceUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private int mBufferSize = 50000; //Default
+    public static final String DEVICE_EXTRA = "com.example.lightcontrol.SOCKET";
+    public static final String DEVICE_UUID = "com.example.lightcontrol.uuid";
+    private static final String DEVICE_LIST = "com.example.lightcontrol.devicelist";
+    private static final String DEVICE_LIST_SELECTED = "com.example.lightcontrol.devicelistselected";
+    public static final String BUFFER_SIZE = "com.example.lightcontrol.buffersize";
+    private static final String TAG = "BlueTest5-MainActivity";
 
     ArrayList<String> stringArrayList = new ArrayList<String>();
     ArrayAdapter<String> arrayAdapter;
@@ -41,6 +56,9 @@ public class ScanningDevicesActivity extends AppCompatActivity {
         lstvw1 = findViewById(R.id.listview1);
         btnScanDevices = findViewById(R.id.btnScanDevices);
         btnBack1 = findViewById(R.id.btnBack1);
+        clicked_device = (TextView) findViewById(R.id.tv_click);
+        connect = findViewById(R.id.btnConnect);
+
 
         btnBack1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +68,20 @@ public class ScanningDevicesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (!device_data.equals(null)){
+            connect.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    BluetoothDevice device = device_data;
+                    Intent intent = new Intent(getApplicationContext(), Controlling.class);
+                    intent.putExtra(DEVICE_EXTRA, device);
+                    intent.putExtra(DEVICE_UUID, mDeviceUUID.toString());
+                    intent.putExtra(BUFFER_SIZE, mBufferSize);
+                    startActivity(intent);
+                }
+            });
+        }
 
 
         btnScanDevices.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +108,15 @@ public class ScanningDevicesActivity extends AppCompatActivity {
 
         arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList);
         lstvw1.setAdapter(arrayAdapter);
+        lstvw1.setClickable(true);
+        lstvw1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String text = lstvw1.getItemAtPosition(i).toString();
+                clicked_device.setText(text);
+                device_data = (BluetoothDevice) lstvw1.getItemAtPosition(i);
+            }
+        });
     }
 
     BroadcastReceiver Receiver = new BroadcastReceiver() {
@@ -98,6 +139,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
                 stringArrayList.add(device.getName() + "  " + device.getAddress());
 
                 arrayAdapter.notifyDataSetChanged();
+
             }
             Toast.makeText(getApplicationContext(), "Scanning Devices", Toast.LENGTH_SHORT).show();
         }
