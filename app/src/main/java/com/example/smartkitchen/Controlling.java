@@ -49,8 +49,8 @@ public class Controlling extends Activity {
             setContentView(R.layout.activity_controlling);
 
             // mBtnDisconnect = (Button) findViewById(R.id.btnDisconnect);
-            btnOn = (Button) findViewById(R.id.on);
-            btnOff = (Button) findViewById(R.id.off);
+            btnOn = (Button) findViewById(R.id.btnOn1);
+            btnOff = (Button) findViewById(R.id.btnOff1);
 
 
             Intent intent = getIntent();

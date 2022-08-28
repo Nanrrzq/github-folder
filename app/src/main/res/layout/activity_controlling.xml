@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanningDevicesActivity"
+    android:background="@color/white"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/input_bg2" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="Scanning "
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOn1"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/input_bg3"
+        android:text="SCAN DEVICES"
+        android:textColor="@color/pink"
+        tools:ignore="MissingConstraints" />
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOff1"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btnOn1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/input_bg3"
+        android:text="CONNECT"
+        android:textColor="@color/pink"
+        tools:ignore="MissingConstraints" />
+
+
+
+</RelativeLayout>
