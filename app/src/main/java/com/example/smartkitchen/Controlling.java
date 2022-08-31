@@ -30,6 +30,7 @@ public class Controlling extends Activity {
         private BluetoothSocket mBTSocket;
         private ReadInput mReadThread = null;
         String mac_id;
+
     BluetoothAdapter btAdapter;
 
         private boolean mIsUserInitiatedDisconnect = false;
