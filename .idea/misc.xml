@@ -19,8 +19,10 @@
         <entry key="..\:/github folder/app/src/main/res/drawable-v24/input_bg2.xml" value="0.161" />
         <entry key="..\:/github folder/app/src/main/res/layout/activity_controlling.xml" value="0.2703125" />
         <entry key="..\:/github folder/app/src/main/res/layout/activity_home.xml" value="0.27447916666666666" />
+        <entry key="..\:/github folder/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/github folder/app/src/main/res/layout/activity_scan_layout.xml" value="0.13297872340425532" />
-        <entry key="..\:/github folder/app/src/main/res/layout/activity_scanning_devices.xml" value="0.10810810810810811" />
+        <entry key="..\:/github folder/app/src/main/res/layout/activity_scanning_devices.xml" value="0.264" />
+        <entry key="..\:/github folder/app/src/main/res/layout/activity_setingsss.xml" value="0.27447916666666666" />
         <entry key="..\:/github folder/app/src/main/res/layout/activity_smart_kitchen.xml" value="0.27447916666666666" />
       </map>
     </option>

@@ -50,7 +50,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/input_bg3"
         android:text="ON"
         android:textColor="@color/pink"
@@ -61,9 +61,20 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="265dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/input_bg3"
         android:text="OFF"
+        android:textColor="@color/pink"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConnect2"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="265dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/input_bg3"
+        android:text="Connect"
         android:textColor="@color/pink"
         tools:ignore="MissingConstraints" />
 
@@ -71,8 +82,8 @@
         android:id="@+id/btnShowPaired"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/input_bg3"
         android:text="SHOW PAIRED"
         android:textColor="@color/pink"
@@ -83,11 +94,20 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/input_bg3"
         android:text="SCAN"
         android:textColor="@color/pink"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_click2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        android:text="TextView"
+        android:textSize="18sp" />
 
     <ListView
         android:id="@+id/listview"

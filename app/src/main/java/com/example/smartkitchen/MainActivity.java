@@ -8,17 +8,17 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnLogin;
+    Button btnContinue;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnLogin = findViewById(R.id.btnLogin);
+        btnContinue = findViewById(R.id.btnContinue);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);

@@ -51,6 +51,7 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="145dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:background="@drawable/input_bg3"
         android:text="SCAN DEVICES"
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnConnect"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="13dp"
         android:text="TextView"
         android:textSize="18sp" />
 
@@ -79,7 +80,8 @@
         android:layout_height="40dp"
         android:layout_below="@+id/btnScanDevices"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/input_bg3"
         android:text="CONNECT"
         android:textColor="@color/pink"

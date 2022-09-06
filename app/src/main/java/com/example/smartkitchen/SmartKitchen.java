@@ -17,6 +17,7 @@ public class SmartKitchen extends HomeActivity {
 
         btnBack2 = findViewById(R.id.btnBack2);
 
+//        Button Back2
         btnBack2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

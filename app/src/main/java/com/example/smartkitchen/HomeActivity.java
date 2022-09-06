@@ -45,6 +45,7 @@ public class HomeActivity extends MainActivity {
             }
         });
 
+//      Button Smart Kitchen
         btnSmartKitchen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

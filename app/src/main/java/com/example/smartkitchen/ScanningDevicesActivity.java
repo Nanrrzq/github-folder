@@ -35,6 +35,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
     Button connect;
     BluetoothDevice device_data;
     String mac_id;
+
     private static final int BT_ENABLE_REQUEST = 10; // This is the code we use for BT Enable
     private static final int SETTINGS = 20;
     private UUID mDeviceUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -61,7 +62,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
         clicked_device = (TextView) findViewById(R.id.tv_click);
         connect = findViewById(R.id.btnConnect);
 
-
+//        Button Back
         btnBack1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +73,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
         });
 
 
-
+//          Button Connect
             connect.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
@@ -87,7 +88,7 @@ public class ScanningDevicesActivity extends AppCompatActivity {
             });
 
 
-
+//      Button Scan Devices
         btnScanDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

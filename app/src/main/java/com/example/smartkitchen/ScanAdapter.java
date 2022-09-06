@@ -15,6 +15,7 @@ public class ScanAdapter extends ArrayAdapter<ScanItem> {
     public ScanAdapter(@NonNull Context context, ArrayList<ScanItem> users){
         super(context, 0, users);
     }
+//  Adapter untuk menampilkan bluetooth yang sudah di scan
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
